@@ -15,16 +15,13 @@
   }
 
   class CoffeeMachine implements CoffeeMaker, CommercialCoffeeMaker {
-    //class 안의 멤버 변수
-    private static BEANS_GRAMM_PER_SHOT: number = 7; //외부에서 전혀 접근할 필요 ❌
-    private coffeeBeans: number = 0; // instance level
+    private static BEANS_GRAMM_PER_SHOT: number = 7;
+    private coffeeBeans: number = 0;
 
-    //constructor는 오브젝트를 만들때, 항상 처음에 호출되는 함수.
     private constructor(beans: number) {
       this.coffeeBeans = beans;
     }
 
-    //누군가가 constructor를 이용해 생성하는 것을 방지하고 대신 static한 함수를 이용해 만들수 있도록 유도한다.
     static makeMachine(coffeeBeans: number): CoffeeMachine {
       return new CoffeeMachine(coffeeBeans);
     }
@@ -38,13 +35,12 @@
     }
 
     grindBeans(shots: number) {
-      console.log(`gridn beans for ${shots}`);
+      console.log(`grinding beans for ${shots}`);
       if (this.coffeeBeans < shots * CoffeeMachine.BEANS_GRAMM_PER_SHOT) {
         throw new Error('Not enough coffee beans!');
       }
       this.coffeeBeans -= shots * CoffeeMachine.BEANS_GRAMM_PER_SHOT;
     }
-
     preheat(): void {
       console.log('heating up...!');
     }
@@ -55,7 +51,6 @@
         hasMilk: false,
       };
     }
-
     clean(): void {
       console.log('cleaning the machine');
     }
